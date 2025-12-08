@@ -1,0 +1,13 @@
+{
+  "name": "snap-test-seams-example-ts",
+  "type": "module",
+  "scripts": {
+    "start": "tsc && node ./src/main.ts",
+    "test": "tsc && node --test ./src/test.ts"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3"
+  }
+}

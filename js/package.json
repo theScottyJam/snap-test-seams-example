@@ -1,0 +1,9 @@
+{
+  "name": "snap-test-seams-example-js",
+  "type": "module",
+  "scripts": {
+    "start": "node ./src/main.js",
+    "test": "node --test ./src/test.js"
+  },
+  "license": "UNLICENSED"
+}

@@ -1,0 +1,55 @@
+import * as fs from 'node:fs';
+import { Dependency } from './Dependency.ts';
+
+// ~~~ File I/O ~~~
+
+const TODOS_FILE_PATH = 'todos.json';
+
+export interface TodoFileDependency {
+  writeToTodoFile: (data: string[]) => Promise<void>
+  readFromTodoFile: () => Promise<string[]>
+}
+
+export const todoFileDependency = new Dependency<TodoFileDependency>('TodoFileDependency');
+
+const writeToTodoFile = todoFileDependency.define('writeToTodoFile', async data => {
+  await fs.promises.writeFile(TODOS_FILE_PATH, JSON.stringify(data), 'utf-8');
+});
+
+const readFromTodoFile = todoFileDependency.define('readFromTodoFile', async () => {
+  try {
+    return JSON.parse(await fs.promises.readFile(TODOS_FILE_PATH, 'utf-8'));
+  } catch (error: any) {
+    if (error.code === 'ENOENT') { // File not found
+      return [];
+    }
+    throw error;
+  }
+});
+
+// ~~~ logging ~~~
+
+export interface LoggerDependency {
+  log: (...messages: string[]) => void
+}
+
+export const loggerDependency = new Dependency<LoggerDependency>('LoggerDependency');
+
+const log = loggerDependency.define('log', console.log);
+
+// ~~~ main ~~~
+
+export async function main(args: string[]) {
+  // Adds the todo item to the list
+  const updatedTodoItems = [
+    ...await readFromTodoFile(),
+    args.join(' '),
+  ];
+
+  await writeToTodoFile(updatedTodoItems);
+
+  // Prints the updated list of TODO items
+  log(updatedTodoItems.join('\n'));
+}
+
+main(process.argv.slice(2));
