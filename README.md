@@ -1,6 +1,6 @@
 # Snap test-seams example
 
-Combines the code samples for the snap.js test seams walkthrough into a single project.
+Combines the code samples for the [snap.js test seams walkthrough](https://thescottyjam.github.io/snap.js/#!/seams) into a single project.
 
 Use the js/ or ts/ folder according to your preferred language.
 
