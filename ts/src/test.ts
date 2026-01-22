@@ -20,7 +20,7 @@ export class TodoFileFake implements TodoFileDependency {
 }
 
 export class LoggerFake implements LoggerDependency {
-  logged = ''
+  logged = '';
   log(...messages: string[]) {
     this.logged += messages.join(' ') + '\n';
   }
@@ -38,8 +38,8 @@ function initialize() {
   return testDoubles;
 }
 
-describe('main()', () => {
-  test('adds a new todo item to the todo list file', async () => {
+await describe('main()', async () => {
+  await test('adds a new todo item to the todo list file', async () => {
     const testDoubles = initialize();
 
     // Add some initial TODO items to the list
@@ -54,7 +54,7 @@ describe('main()', () => {
     ]);
   });
 
-  test('Prints the updated list of todo items', async () => {
+  await test('Prints the updated list of todo items', async () => {
     const testDoubles = initialize();
 
     // Add some initial TODO items to the list

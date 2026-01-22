@@ -2,7 +2,7 @@
   "name": "snap-test-seams-example-ts",
   "type": "module",
   "scripts": {
-    "start": "tsc && node ./src/main.ts",
+    "start": "tsc && node ./src/entry.ts",
     "test": "tsc && node --test ./src/test.ts"
   },
   "license": "UNLICENSED",

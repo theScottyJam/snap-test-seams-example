@@ -30,6 +30,7 @@ const log = loggerDependency.define('log', console.log);
 
 // ~~~ main ~~~
 
+// Usage example: main(process.argv.slice(2));
 export async function main(args) {
   // Adds the todo item to the list
   const updatedTodoItems = [
@@ -42,5 +43,3 @@ export async function main(args) {
   // Prints the updated list of TODO items
   log(updatedTodoItems.join('\n'));
 }
-
-main(process.argv.slice(2));
